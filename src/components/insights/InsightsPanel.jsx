@@ -1,3 +1,5 @@
+
+
 // Each card here is driven by the computeInsights function in helpers.js.
 // Nothing is hardcoded — if the user adds/removes transactions, these update.
 
@@ -9,6 +11,7 @@ import {
 } from 'lucide-react';
 
 // Reusable card wrapper so each insight has consistent layout + hover effects
+// eslint-disable-next-line no-unused-vars
 function InsightCard({ icon: Icon, iconColor, title, children }) {
   return (
     <div className="animate-fade-in-up bg-white dark:bg-slate-800/80 rounded-2xl p-4 sm:p-5 shadow-sm

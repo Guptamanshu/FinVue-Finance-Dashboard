@@ -46,7 +46,7 @@ export default function TransactionTable() {
     setModalOpen(true);
   }
 
-  function SortIcon({ field }) {
+  function renderSortIcon(field) {
     if (sortField !== field) return <ArrowUpDown size={14} className="text-slate-400" />;
     return sortDir === 'asc'
       ? <ArrowUp size={14} className="text-brand-500" />
@@ -126,7 +126,7 @@ export default function TransactionTable() {
                     ? 'bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400'
                     : 'text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50'}`}
               >
-                Date <SortIcon field="date" />
+                Date {renderSortIcon('date')}
               </button>
               <button
                 id="sort-amount-mobile"
@@ -136,7 +136,7 @@ export default function TransactionTable() {
                     ? 'bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400'
                     : 'text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50'}`}
               >
-                Amt <SortIcon field="amount" />
+                Amt {renderSortIcon('amount')}
               </button>
             </div>
           </div>
@@ -228,7 +228,7 @@ export default function TransactionTable() {
                 <tr className="border-b border-slate-100 dark:border-slate-700/50">
                   <th className="text-left py-3 px-4 md:px-6 font-medium text-slate-500 dark:text-slate-400">
                     <button id="sort-date" onClick={() => setSort('date')} className="flex items-center gap-1.5 hover:text-slate-700 dark:hover:text-slate-200 transition-colors">
-                      Date <SortIcon field="date" />
+                      Date {renderSortIcon('date')}
                     </button>
                   </th>
                   <th className="text-left py-3 px-3 font-medium text-slate-500 dark:text-slate-400">Title</th>
@@ -236,7 +236,7 @@ export default function TransactionTable() {
                   <th className="text-left py-3 px-3 font-medium text-slate-500 dark:text-slate-400 hidden lg:table-cell">Type</th>
                   <th className="text-right py-3 px-3 font-medium text-slate-500 dark:text-slate-400">
                     <button id="sort-amount" onClick={() => setSort('amount')} className="flex items-center gap-1.5 ml-auto hover:text-slate-700 dark:hover:text-slate-200 transition-colors">
-                      Amount <SortIcon field="amount" />
+                      Amount {renderSortIcon('amount')}
                     </button>
                   </th>
                   {isAdmin && (

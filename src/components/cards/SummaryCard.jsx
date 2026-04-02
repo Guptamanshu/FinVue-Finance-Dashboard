@@ -31,15 +31,14 @@ const CARD_THEMES = {
 
 /**
  * @param {{ title, value, trend, type, icon }} props
- * trend: number | null (percent change)
- * type: 'balance' | 'income' | 'expenses'
  */
 export default function SummaryCard({ title, value, trend, type, icon: Icon }) {
   const theme = CARD_THEMES[type] || CARD_THEMES.balance;
 
-  const trendLabel = trend !== null && trend !== undefined
-    ? `${trend >= 0 ? '+' : ''}${trend.toFixed(1)}%`
-    : null;
+  const trendLabel =
+    trend !== null && trend !== undefined
+      ? `${trend >= 0 ? '+' : ''}${trend.toFixed(1)}%`
+      : null;
 
   const isUp = trend > 0;
   const isDown = trend < 0;
@@ -55,12 +54,17 @@ export default function SummaryCard({ title, value, trend, type, icon: Icon }) {
 
       <div className="relative z-10 flex items-start justify-between gap-2">
         <div className="min-w-0">
-          <p className={`text-xs sm:text-sm font-medium ${theme.subText} mb-0.5 sm:mb-1`}>{title}</p>
+          <p className={`text-xs sm:text-sm font-medium ${theme.subText} mb-0.5 sm:mb-1`}>
+            {title}
+          </p>
+
           <p className={`text-xl sm:text-2xl md:text-3xl font-bold ${theme.text} tracking-tight`}>
             {formatCurrency(value)}
           </p>
+
           {trendLabel && (
-            <div className={`flex items-center gap-1 mt-1.5 sm:mt-2 text-xs sm:text-sm font-medium
+            <div
+              className={`flex items-center gap-1 mt-1.5 sm:mt-2 text-xs sm:text-sm font-medium
               ${isUp ? theme.trendUp : isDown ? theme.trendDown : theme.subText}`}
             >
               {isUp && <TrendingUp size={14} />}
@@ -70,9 +74,13 @@ export default function SummaryCard({ title, value, trend, type, icon: Icon }) {
             </div>
           )}
         </div>
-        <div className={`${theme.iconBg} p-2 sm:p-3 rounded-xl shrink-0`}>
-          <Icon size={20} className="text-white sm:w-6 sm:h-6" />
-        </div>
+
+        {/* FIXED: Render only if Icon exists */}
+        {Icon && (
+          <div className={`${theme.iconBg} p-2 sm:p-3 rounded-xl shrink-0`}>
+            <Icon size={20} className="text-white sm:w-6 sm:h-6" />
+          </div>
+        )}
       </div>
     </div>
   );

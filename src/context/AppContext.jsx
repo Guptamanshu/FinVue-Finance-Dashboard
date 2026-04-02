@@ -192,6 +192,7 @@ export function AppProvider({ children }) {
 }
 
 // Custom hook — gives a clear error if someone uses it outside the provider
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAppContext() {
   const ctx = useContext(AppContext);
   if (!ctx) throw new Error('useAppContext must be used within <AppProvider>');

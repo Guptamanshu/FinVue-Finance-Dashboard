@@ -1,0 +1,1 @@
+D:\Dashboard UI\src\components\insights\InsightsPanel.jsx:14:1 Definition for rule 'react/prop-types' was not found.
